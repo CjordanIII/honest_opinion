@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-export default function Home() {
+export default function signup() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -72,12 +70,12 @@ export default function Home() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             New to Speak Your Mind?{" "}
-            <Link
-              href="/signup"
+            <a
+              href="#"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               sign up
-            </Link>
+            </a>
           </p>
         </div>
       </div>
