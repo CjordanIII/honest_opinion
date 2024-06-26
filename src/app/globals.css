@@ -2,32 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+  font-family:"VT323";
+  src:url("../../src/assets/fonts/robotic/VT323-Regular.ttf") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Light mode colors */
+  --foreground-rgb-light: 0, 0, 0;
+  --background-start-rgb-light: 214, 219, 220;
+  --background-end-rgb-light: 255, 255, 255;
+
+  /* Dark mode colors */
+  --foreground-rgb-dark: 255, 255, 255;
+  --background-start-rgb-dark: 0, 0, 0;
+  --background-end-rgb-dark: 0, 0, 0;
+
+  /* Default to light mode */
+  --foreground-rgb: var(--foreground-rgb-light);
+  --background-start-rgb: var(--background-start-rgb-light);
+  --background-end-rgb: var(--background-end-rgb-light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* Switch to dark mode */
+    --foreground-rgb: var(--foreground-rgb-dark);
+    --background-start-rgb: var(--background-start-rgb-dark);
+    --background-end-rgb: var(--background-end-rgb-dark);
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  font-family:'VT323',monospace;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Example usage */
+.header {
+  background-color: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+}
+
+.footer {
+  background-color: rgb(var(--background-end-rgb));
+  color: rgb(var(--foreground-rgb));
 }
