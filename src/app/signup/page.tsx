@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 // interface formData {}
 export default function signup() {
   interface FormData {
@@ -16,15 +18,20 @@ export default function signup() {
 
   async function handleform(formData: FormData) {
     "use server";
-    const email: String = formData.get("email");
-    const username: String = formData.get("username");
-    const password: String = formData.get("password");
-    const formObj: FormObj = {
-      email: email,
-      username: username,
-      password: password,
-    };
-    console.log(formObj);
+
+    try {
+      const email: String = formData.get("email");
+      const username: String = formData.get("username");
+      const password: String = formData.get("password");
+      const formObj: FormObj = {
+        email: email,
+        username: username,
+        password: password,
+      };
+    } catch (error) {
+      console.log(error);
+    }
+    return redirect("/signupsuccess");
   }
 
   return (
@@ -37,7 +44,7 @@ export default function signup() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action={handleform}>
+          <form className="space-y-6" action={handleform} method="post">
             <div>
               <label
                 htmlFor="email"
@@ -76,10 +83,10 @@ export default function signup() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center text-xl justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-gray-900"
                 >
                   Password
                 </label>
@@ -99,9 +106,9 @@ export default function signup() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="confirmpassword"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-xl font-medium leading-6 text-gray-900"
                 >
-                  Confirm Password
+                  confirm password
                 </label>
               </div>
               <div className="mt-2">
